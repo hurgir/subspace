@@ -38,7 +38,7 @@ User=$USER
 Type=simple
 ExecStart=$(which subspace-node) --chain gemini-1 --execution wasm --keep-blocks 1024 --pruning archive --validator --name $SUBSPACE_NODENAME
 Restart=on-failure
-LimitNOFILE=65535
+LimitNOFILE=10000
 
 [Install]
 WantedBy=multi-user.target" > $HOME/subspaced.service
@@ -53,7 +53,7 @@ User=$USER
 Type=simple
 ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET --plot-size 40G
 Restart=on-failure
-LimitNOFILE=65535
+LimitNOFILE=10000
 
 [Install]
 WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
