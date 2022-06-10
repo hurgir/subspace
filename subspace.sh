@@ -18,8 +18,8 @@ sleep 1 && curl -s https://api.nodes.guru/logo.sh | bash && sleep 1
 
 cd $HOME
 rm -rf subspace*
-wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-1b-2022-june-03/subspace-node-ubuntu-x86_64-gemini-1b-2022-june-03 
-wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-1b-2022-june-03/subspace-farmer-ubuntu-x86_64-gemini-1b-2022-june-03
+wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-1b-2022-jun-08/subspace-node-ubuntu-x86_64-gemini-1b-2022-jun-08
+wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-1b-2022-jun-08/subspace-farmer-ubuntu-x86_64-gemini-1b-2022-jun-08
 chmod +x subspace*
 mv subspace* /usr/local/bin/
 
@@ -36,9 +36,9 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-node) --chain gemini-1 --execution wasm --keep-blocks 1024 --pruning archive --validator --name $SUBSPACE_NODENAME
+ExecStart=$(which subspace-node) --chain gemini-1 --execution wasm --keep-blocks 1024 --pruning 1024 --validator --name $SUBSPACE_NODENAME
 Restart=on-failure
-LimitNOFILE=10000
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target" > $HOME/subspaced.service
@@ -53,7 +53,7 @@ User=$USER
 Type=simple
 ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET --plot-size 40G
 Restart=on-failure
-LimitNOFILE=10000
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
