@@ -51,7 +51,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET --plot-size 15G
+ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET --plot-size 5G
 Restart=on-failure
 LimitNOFILE=65535
 
