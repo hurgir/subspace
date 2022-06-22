@@ -7,7 +7,7 @@ exists()
 if exists curl; then
 	echo ''
 else
-  sudo apt update && sudo apt install curl -y < "/dev/null"
+  sudo apt update && sudo apt install ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y && sudo apt install curl -y < "/dev/null"
 fi
 bash_profile=$HOME/.bash_profile
 if [ -f "$bash_profile" ]; then
