@@ -7,7 +7,7 @@ exists()
 if exists curl; then
 	echo ''
 else
-  sudo apt update && sudo apt install ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y && sudo apt install curl -y < "/dev/null"
+  sudo apt update && sudo apt install curl -y < "/dev/null"
 fi
 bash_profile=$HOME/.bash_profile
 if [ -f "$bash_profile" ]; then
@@ -15,7 +15,7 @@ if [ -f "$bash_profile" ]; then
 fi
 sleep 1 && curl -s https://api.nodes.guru/logo.sh | bash && sleep 1
 
-
+sudo apt update && sudo apt install ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y
 cd $HOME
 rm -rf subspace*
 wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-1b-2022-jun-18/subspace-node-ubuntu-x86_64-gemini-1b-2022-jun-18
@@ -51,7 +51,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET --plot-size 180G
+ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET --plot-size 150G
 Restart=on-failure
 LimitNOFILE=65535
 
